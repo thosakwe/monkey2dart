@@ -3,6 +3,8 @@ description: "Compiles the Monkey programming language into equivalent Dart."
 homepage: "https://github.com/thosakwe/monkey2dart.git"
 name: "monkey2dart"
 version: "1.0.0-alpha"
+environment:
+  sdk: ">=1.17.0"
 dependencies: 
   build: "^0.7.0"
   code_builder: "^1.0.0-beta"
