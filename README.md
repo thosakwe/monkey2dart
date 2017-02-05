@@ -3,7 +3,6 @@ Compiles the Monkey programming language into equivalent Dart.
 
 Still missing:
 * `IfExpression`
-* `InfixExpression`
 * `PrefixExpression`
 * `print` is currently the only available built-in
 

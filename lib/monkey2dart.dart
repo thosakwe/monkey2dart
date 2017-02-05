@@ -54,15 +54,34 @@ class Monkey2DartCompiler {
     }
 
     if (expression is HashLiteral) {
-      return map(expression.pairs.keys
-          .fold({}, (map, key) => map..[key] = expression.pairs[key]));
+      return map(expression.pairs.keys.map(compileExpression).fold({},
+          (map, key) => map..[key] = compileExpression(expression.pairs[key])));
     }
 
-    if (expression is Identifier) return reference(expression.value);
+    if (expression is Identifier) return resolveBuiltin(expression);
 
     if (expression is IndexExpression)
       return compileExpression(expression.left)[
           compileExpression(expression.index)];
+
+    if (expression is InfixExpression) {
+      var left = compileExpression(expression.left),
+          right = compileExpression(expression.right);
+
+      switch (expression.operator) {
+        case '*':
+          return left * right;
+        case '/':
+          return left / right;
+        case '+':
+          return left + right;
+        case '-':
+          return left - right;
+        default:
+          throw new UnimplementedError(
+              'Unsupported operator `${expression.operator}`.');
+      }
+    }
 
     if (expression is IntegerLiteral) return literal(expression.value);
 
@@ -76,6 +95,8 @@ class Monkey2DartCompiler {
       switch (expression.value) {
         case 'puts':
           return reference('print');
+        default:
+          return reference(expression.value);
       }
     }
 

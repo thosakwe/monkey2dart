@@ -2,7 +2,7 @@ author: "Tobe O <thosakwe@gmail.com>"
 description: "Compiles the Monkey programming language into equivalent Dart."
 homepage: "https://github.com/thosakwe/monkey2dart.git"
 name: "monkey2dart"
-version: "1.0.0-alpha"
+version: "1.0.0-alpha+1"
 environment:
   sdk: ">=1.17.0"
 dependencies: 
